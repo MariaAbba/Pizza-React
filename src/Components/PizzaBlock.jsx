@@ -2,6 +2,8 @@ import {useState} from 'react'
 
 const PizzaBlock = ({title, price, }) => {
 const [pizzaCount, setPizzaCount] = useState(0)
+const [crustSize, setCrustSize] = useState('Thin-Crust')
+const [pizzaSize, setPizzaSize] = useState('Small')
 
 const onClickAddButton = () => {
   setPizzaCount(pizzaCount + 1)
@@ -18,13 +20,38 @@ const onClickAddButton = () => {
       <h4 className="pizza-block__title">{title}</h4>
       <div className="pizza-block__selector">
         <ul>
-          <li className="active">тонкое</li>
-          <li>традиционное</li>
+          <li
+            onClick={() => setCrustSize('Thin-Crust')}
+            className={crustSize === 'Thin-Crust' ? 'active' : null}
+          >
+            Thin-Crust
+          </li>
+          <li
+            onClick={() => setCrustSize('Thick-Crust')}
+            className={crustSize === 'Thick-Crust' ? 'active' : null}
+          >
+            Thick-Crust
+          </li>
         </ul>
         <ul>
-          <li className="active">26 см.</li>
-          <li>30 см.</li>
-          <li>40 см.</li>
+          <li
+            onClick={() => setPizzaSize('Small')}
+            className={pizzaSize === 'Small' ? 'active' : null}
+          >
+            Small
+          </li>
+          <li
+            onClick={() => setPizzaSize('Medium')}
+            className={pizzaSize === 'Medium' ? 'active' : null}
+          >
+            Medium
+          </li>
+          <li
+            onClick={() => setPizzaSize('Large')}
+            className={pizzaSize === 'Large' ? 'active' : null}
+          >
+            Large
+          </li>
         </ul>
       </div>
       <div className="pizza-block__bottom">

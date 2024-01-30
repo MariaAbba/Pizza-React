@@ -11,7 +11,7 @@ function App() {
       <div className="content">
         <div className="container">
           <div className="content__top">
-            <Categories/>
+            <Categories />
             <div className="sort">
               <div className="sort__label">
                 <svg
@@ -26,23 +26,23 @@ function App() {
                     fill="#2C2C2C"
                   />
                 </svg>
-                <b>Сортировка по:</b>
-                <span>популярности</span>
+                <b>Sort by:</b>
+                <span>Popular Now</span>
               </div>
               <div className="sort__popup">
                 <ul>
-                  <li className="active">популярности</li>
-                  <li>цене</li>
-                  <li>алфавиту</li>
+                  <li className="active">Best Sellers</li>
+                  <li>Price: Lowest First</li>
+                  <li>Price: Highest First</li>
                 </ul>
               </div>
             </div>
           </div>
-          <h2 className="content__title">Все пиццы</h2>
+          <h2 className="content__title">All Pizzas</h2>
           <div className="content__items">
-            <PizzaBlock title="Чизбургер-пицца" price={395} />
-            <PizzaBlock />
-            <PizzaBlock />
+            <PizzaBlock title="Cheeseburger-pizza" price={395} />
+            <PizzaBlock title="Cheeseburger-pizza" price={395}/>
+            <PizzaBlock title="Cheeseburger-pizza" price={395}/>
             {/* <div className="pizza-block">
               <img
                 className="pizza-block__image"
