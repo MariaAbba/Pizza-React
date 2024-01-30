@@ -7,7 +7,7 @@ const Categories = () => {
       <ul>
         <li
           onClick={() => setCategory('All')}
-          className={category === 'All' ? 'active' : ''}
+          className={category === 'All' ? 'active' : null}
         >
           All
         </li>
