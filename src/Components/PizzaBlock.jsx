@@ -1,63 +1,40 @@
-import {useState} from 'react'
+import { useState } from 'react'
 
-const PizzaBlock = ({title, price, image }) => {
-const [pizzaCount, setPizzaCount] = useState(0)
-const [crustSize, setCrustSize] = useState('Thin-Crust')
-const [pizzaSize, setPizzaSize] = useState('Small')
+const PizzaBlock = ({ title, price, image, sizes, types }) => {
+  const typeNames = ['Thin-Crust', 'Thick-Crust']
+  // const [pizzaCount, setPizzaCount] = useState(0)
+  const [crustSize, setCrustSize] = useState('Thin-Crust')
+  // const [pizzaSize, setPizzaSize] = useState(0)
 
-const onClickAddButton = () => {
-  setPizzaCount(pizzaCount + 1)
-}
+  // const onClickAddButton = () => {
+  //   setPizzaCount(pizzaCount + 1)
+  // }
 
-// (prev) => [...prev, prev + 1]
+  // (prev) => [...prev, prev + 1]
   return (
     <div className="pizza-block">
-      <img
-        className="pizza-block__image"
-        src={image}
-        alt="Pizza"
-      />
+      <img className="pizza-block__image" src={image} alt="Pizza" />
       <h4 className="pizza-block__title">{title}</h4>
       <div className="pizza-block__selector">
         <ul>
-          <li
-            onClick={() => setCrustSize('Thin-Crust')}
-            className={crustSize === 'Thin-Crust' ? 'active' : null}
-          >
-            Thin-Crust
-          </li>
-          <li
-            onClick={() => setCrustSize('Thick-Crust')}
-            className={crustSize === 'Thick-Crust' ? 'active' : null}
-          >
-            Thick-Crust
-          </li>
+          {types.map((typeId) => (
+            <li
+            key={typeId}
+            >{typeNames[typeId]} </li>
+          ))}
         </ul>
         <ul>
-          <li
-            onClick={() => setPizzaSize('Small')}
-            className={pizzaSize === 'Small' ? 'active' : null}
-          >
-            Small
-          </li>
-          <li
-            onClick={() => setPizzaSize('Medium')}
-            className={pizzaSize === 'Medium' ? 'active' : null}
-          >
-            Medium
-          </li>
-          <li
-            onClick={() => setPizzaSize('Large')}
-            className={pizzaSize === 'Large' ? 'active' : null}
-          >
-            Large
-          </li>
+          {sizes.map((size, i) => (
+            <li
+            key={i}
+            >{size}sm </li>
+          ))}
         </ul>
       </div>
       <div className="pizza-block__bottom">
         <div className="pizza-block__price">from ${price}</div>
         <button
-          onClick={() => onClickAddButton()}
+          // onClick={() => onClickAddButton()}
           className="button button--outline button--add"
         >
           <svg
@@ -73,7 +50,7 @@ const onClickAddButton = () => {
             />
           </svg>
           <span>Select</span>
-          <i>{pizzaCount}</i>
+          <i> 0{/* {pizzaCount} */}</i>
         </button>
       </div>
     </div>
