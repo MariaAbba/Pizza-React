@@ -1,11 +1,29 @@
 import React from 'react'
 
 const Categories = () => {
-  const [category, setCategory] = React.useState('All')
+  // const [category, setCategory] = React.useState('All')
+  
+  const [activeIndex, setActiveIndex] = React.useState(0)
+  const categories = ['All', 'Meat', 'Chicken', 'Vegetarian', 'Hot']
+
+  const onClickCategory = (index) => {
+    setActiveIndex(index)
+  }
+
+  console.log(activeIndex)
   return (
     <div className="categories">
       <ul>
-        <li
+        {categories.map((value, i) => (
+          <li
+            key={i}
+            onClick={() => onClickCategory(i)}
+            className={activeIndex === i ? 'active' : null}
+          >
+            {value}
+          </li>
+        ))}
+        {/* <li
           onClick={() => setCategory('All')}
           className={category === 'All' ? 'active' : null}
         >
@@ -16,25 +34,7 @@ const Categories = () => {
           className={category === 'Meat' ? 'active' : null}
         >
           Meat
-        </li>
-        <li
-          onClick={() => setCategory('Chicken')}
-          className={category === 'Chicken' ? 'active' : null}
-        >
-          Chicken
-        </li>
-        <li
-          onClick={() => setCategory('Vegetarian')}
-          className={category === 'Vegetarian' ? 'active' : null}
-        >
-          Vegetarian
-        </li>
-        <li
-          onClick={() => setCategory('Hot')}
-          className={category === 'Hot' ? 'active' : null}
-        >
-          Hot
-        </li>
+        </li>    */}
       </ul>
     </div>
   )

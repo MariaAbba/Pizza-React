@@ -1,6 +1,6 @@
 import {useState} from 'react'
 
-const PizzaBlock = ({title, price, }) => {
+const PizzaBlock = ({title, price, image }) => {
 const [pizzaCount, setPizzaCount] = useState(0)
 const [crustSize, setCrustSize] = useState('Thin-Crust')
 const [pizzaSize, setPizzaSize] = useState('Small')
@@ -14,7 +14,7 @@ const onClickAddButton = () => {
     <div className="pizza-block">
       <img
         className="pizza-block__image"
-        src="https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg"
+        src={image}
         alt="Pizza"
       />
       <h4 className="pizza-block__title">{title}</h4>
@@ -55,7 +55,7 @@ const onClickAddButton = () => {
         </ul>
       </div>
       <div className="pizza-block__bottom">
-        <div className="pizza-block__price">от {price} ₽</div>
+        <div className="pizza-block__price">from ${price}</div>
         <button
           onClick={() => onClickAddButton()}
           className="button button--outline button--add"
@@ -72,7 +72,7 @@ const onClickAddButton = () => {
               fill="white"
             />
           </svg>
-          <span>Добавить</span>
+          <span>Select</span>
           <i>{pizzaCount}</i>
         </button>
       </div>
