@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 
 const Sort = () => {
-  const [open, setOpen] = useState(false);
-  const [selected, setSelected] = useState(0);
+  const [open, setOpen] = useState(false)
+  const [selected, setSelected] = useState(0)
   const list = ['Best Sellers', 'Price: Lowest First', 'Price: Highest First']
   const sortName = list[selected]
 
@@ -32,11 +32,13 @@ const Sort = () => {
         <div className="sort__popup">
           <ul>
             {list.map((item, i) => (
-              <li 
-              key={i}
-              onClick={() => onClickListItem(i)}
-              className={selected === i ? 'active' : null}>
-              {item}</li>
+              <li
+                key={i}
+                onClick={() => onClickListItem(i)}
+                className={selected === i ? 'active' : null}
+              >
+                {item}
+              </li>
             ))}
           </ul>
         </div>
