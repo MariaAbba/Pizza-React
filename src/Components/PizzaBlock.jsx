@@ -3,7 +3,7 @@ import { useState } from 'react'
 const PizzaBlock = ({ title, price, image, sizes, types }) => {
   const [crustSize, setCrustSize] = useState(0)
   const typeNames = ['Thin-Crust', 'Thick-Crust']
-  // const [crustSize, setCrustSize] = useState(0)
+  const [pizzaSize, setPizzaSize] = useState(0)
 
   return (
     <div className="pizza-block">
@@ -12,15 +12,24 @@ const PizzaBlock = ({ title, price, image, sizes, types }) => {
       <div className="pizza-block__selector">
         <ul>
           {types.map((typeId) => (
-            <li onClick={()=> setCrustSize(typeId)}
-            className={crustSize === typeId ? 'active' : null} key={typeId}>
+            <li
+              key={typeId}
+              onClick={() => setCrustSize(typeId)}
+              className={crustSize === typeId ? 'active' : null}
+            >
               {typeNames[typeId]}
             </li>
           ))}
         </ul>
         <ul>
           {sizes.map((size, i) => (
-            <li key={i}>{size}sm </li>
+            <li
+              key={i}
+              onClick={() => setPizzaSize(i)}
+              className={pizzaSize === i ? 'active' : null}
+            >
+              {size}sm{' '}
+            </li>
           ))}
         </ul>
       </div>
