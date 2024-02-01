@@ -1,10 +1,13 @@
 import React, { useState } from 'react'
 
 const Sort = () => {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
+  const [selected, seSelected] = useState(0);
+  const list = ['Best Sellers', 'Price: Lowest First', 'Price: Highest First']
   return (
     <div className="sort">
       <div className="sort__label">
+        <b>Sort by:</b>
         <svg
           width="10"
           height="6"
@@ -17,15 +20,18 @@ const Sort = () => {
             fill="#2C2C2C"
           />
         </svg>
-        <b>Sort by:</b>
-        <span onClick={()=> setOpen(!open)}>Popular Now</span>
+        <span onClick={() => setOpen(!open)}>Popular Now</span>
       </div>
       {open && (
         <div className="sort__popup">
           <ul>
-            <li className="active">Best Sellers</li>
-            <li>Price: Lowest First</li>
-            <li>Price: Highest First</li>
+            {list.map((item, i) => (
+              <li 
+              key={i}
+              onClick={() => seSelected(i)}
+              className={selected === i ? 'active' : null}>
+              {item}</li>
+            ))}
           </ul>
         </div>
       )}
