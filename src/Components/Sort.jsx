@@ -4,6 +4,7 @@ const Sort = () => {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState(0);
   const list = ['Best Sellers', 'Price: Lowest First', 'Price: Highest First']
+  const sortName = list[selected]
 
   const onClickListItem = (index) => {
     setSelected(index)
@@ -25,7 +26,7 @@ const Sort = () => {
             fill="#2C2C2C"
           />
         </svg>
-        <span onClick={() => setOpen(!open)}>Popular Now</span>
+        <span onClick={() => setOpen(!open)}>{sortName}</span>
       </div>
       {open && (
         <div className="sort__popup">
