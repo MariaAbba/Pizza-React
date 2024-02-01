@@ -50,6 +50,7 @@ function App() {
                 image={obj.imageUrl}
                 sizes={obj.sizes}
                 types={obj.types}
+                // {...obj}
               />
             ))}
           </div>
