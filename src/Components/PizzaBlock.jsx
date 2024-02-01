@@ -1,16 +1,10 @@
 import { useState } from 'react'
 
 const PizzaBlock = ({ title, price, image, sizes, types }) => {
+  const [crustSize, setCrustSize] = useState(0)
   const typeNames = ['Thin-Crust', 'Thick-Crust']
-  // const [pizzaCount, setPizzaCount] = useState(0)
-  const [crustSize, setCrustSize] = useState('Thin-Crust')
-  // const [pizzaSize, setPizzaSize] = useState(0)
+  // const [crustSize, setCrustSize] = useState(0)
 
-  // const onClickAddButton = () => {
-  //   setPizzaCount(pizzaCount + 1)
-  // }
-
-  // (prev) => [...prev, prev + 1]
   return (
     <div className="pizza-block">
       <img className="pizza-block__image" src={image} alt="Pizza" />
@@ -18,25 +12,21 @@ const PizzaBlock = ({ title, price, image, sizes, types }) => {
       <div className="pizza-block__selector">
         <ul>
           {types.map((typeId) => (
-            <li
-            key={typeId}
-            >{typeNames[typeId]} </li>
+            <li onClick={()=> setCrustSize(typeId)}
+            className={crustSize === typeId ? 'active' : null} key={typeId}>
+              {typeNames[typeId]}
+            </li>
           ))}
         </ul>
         <ul>
           {sizes.map((size, i) => (
-            <li
-            key={i}
-            >{size}sm </li>
+            <li key={i}>{size}sm </li>
           ))}
         </ul>
       </div>
       <div className="pizza-block__bottom">
         <div className="pizza-block__price">from ${price}</div>
-        <button
-          // onClick={() => onClickAddButton()}
-          className="button button--outline button--add"
-        >
+        <button className="button button--outline button--add">
           <svg
             width="12"
             height="12"
@@ -50,7 +40,7 @@ const PizzaBlock = ({ title, price, image, sizes, types }) => {
             />
           </svg>
           <span>Select</span>
-          <i> 0{/* {pizzaCount} */}</i>
+          <i> 0</i>
         </button>
       </div>
     </div>
