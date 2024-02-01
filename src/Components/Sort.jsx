@@ -2,8 +2,13 @@ import React, { useState } from 'react'
 
 const Sort = () => {
   const [open, setOpen] = useState(false);
-  const [selected, seSelected] = useState(0);
+  const [selected, setSelected] = useState(0);
   const list = ['Best Sellers', 'Price: Lowest First', 'Price: Highest First']
+
+  const onClickListItem = (index) => {
+    setSelected(index)
+    setOpen(false)
+  }
   return (
     <div className="sort">
       <div className="sort__label">
@@ -28,7 +33,7 @@ const Sort = () => {
             {list.map((item, i) => (
               <li 
               key={i}
-              onClick={() => seSelected(i)}
+              onClick={() => onClickListItem(i)}
               className={selected === i ? 'active' : null}>
               {item}</li>
             ))}
