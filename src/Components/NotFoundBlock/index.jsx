@@ -4,12 +4,13 @@ import styles from './../NotFoundBlock/NotFoundBlock.module.scss'
 
 const index = () => {
   return (
-    <div>
-      <h1 className={styles.root}>
+    <div className={styles.root}>
+      <h1>
         <span>😢</span>
         <br />
         Nothing To Display
       </h1>
+      <p className={styles.description}>The Page Cannot Be Found</p>
     </div>
   )
 }
