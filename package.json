@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "axios": "^1.6.7",
     "content-loader": "^2.0.11",
     "react": "^18.2.0",
     "react-content-loader": "^6.2.1",
