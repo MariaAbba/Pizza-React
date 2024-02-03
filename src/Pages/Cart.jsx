@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 import empty_cart from '../assets/trash.svg'
 import grey_arrow_left from '../assets/grey-arrow-left.svg'
@@ -283,13 +284,13 @@ const Cart = () => {
           </span>
         </div>
         <div className="cart__bottom-buttons">
-          <a
-            href="/"
+          <Link
+            to="/"
             className="button button--outline button--add go-back-btn"
           >
             <img src={grey_arrow_left} alt="arrow-left" />
             <span>Вернуться назад</span>
-          </a>
+          </Link>
           <div className="button pay-btn">
             <span>Оплатить сейчас</span>
           </div>
