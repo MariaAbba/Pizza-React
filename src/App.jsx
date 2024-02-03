@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+// import React, { useState, useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
 
 import Header from './Components/Header'
@@ -16,7 +16,7 @@ function App() {
         <div className="container">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/cart" element={<Cart/>} />
+            <Route path="/cart" element={<Cart />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>

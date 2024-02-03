@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import PropTypes from 'prop-types'
 
 const PizzaBlock = ({ title, price, image, sizes, types }) => {
   const [crustSize, setCrustSize] = useState(0)
@@ -56,4 +57,11 @@ const PizzaBlock = ({ title, price, image, sizes, types }) => {
   )
 }
 
+PizzaBlock.propTypes = {
+  title: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+  image: PropTypes.string.isRequired,
+  sizes: PropTypes.arrayOf(PropTypes.number).isRequired,
+  types: PropTypes.arrayOf(PropTypes.number).isRequired,
+}
 export default PizzaBlock

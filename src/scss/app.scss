@@ -35,22 +35,11 @@ body {
 
   &__items {
     display: grid;
-    grid-template-rows: 1fr;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-gap: 3vw;
-
-    @media (max-width: 1380px) {
-      grid-template-columns: 1fr 1fr 1fr;
-    }
-
-    @media (max-width: 1090px) {
-      grid-template-columns: 1fr 1fr;
-    }
-
-    @media (max-width: 768px) {
-      grid-template-columns: 1fr;
-    }
-  }
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-column-gap: 11px;
+    justify-items: center;
+ 
+     }
 
   &__top {
     display: flex;
