@@ -38,15 +38,19 @@ body {
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     grid-column-gap: 11px;
     justify-items: center;
- 
-     }
+  }
 
   &__top {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    @media (max-width: 768px) {
-      flex-direction: column;
+
+    // @media (max-width: 768px) {
+    //   flex-direction: column;
+    // }
+
+    @media (max-width: 990px) {
+      flex-direction: column-reverse;
     }
   }
 }
@@ -87,6 +91,9 @@ body {
     }
   }
 
+  .content__items {
+    display: block;
+  }
   .content__title {
     display: flex;
     align-items: center;

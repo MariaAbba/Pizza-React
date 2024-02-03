@@ -7,6 +7,10 @@
     display: flex;
     align-items: center;
 
+    @media (max-width: 990px) {
+      margin-bottom: 30px;
+    }
+
     svg {
       margin-right: 8px;
       transform: rotate(180deg);
