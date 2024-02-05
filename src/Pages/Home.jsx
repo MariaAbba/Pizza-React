@@ -21,7 +21,7 @@ const Home = () => {
         setIsLoading(false)
       })
     window.scrollTo(0, 0)
-  }, [categoryId])
+  }, [categoryId, sortType])
 
   return (
     <>

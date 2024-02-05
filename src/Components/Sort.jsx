@@ -2,9 +2,14 @@ import React, { useState } from 'react'
 
 const Sort = ({ value, clickOnSort }) => {
   const [open, setOpen] = React.useState(false)
-  // const [selected, setSelected] = useState(0)
-  const list = ['Best Sellers', 'Price: Lowest First', 'Price: Highest First']
-  const sortName = list[value]
+  const list = [
+    {name:'Best Sellers', sort: 'rating'},
+        {name:'Price: Lowest First', sort: 'price'},
+        {name:'Price: Highest First', sort: 'price'},
+        
+        // 'descending:, ascending:}
+  ]
+  const sortName = list[value].name;
 
   const onClickListItem = (index) => {
     clickOnSort(index)
@@ -31,13 +36,13 @@ const Sort = ({ value, clickOnSort }) => {
       {open && (
         <div className="sort__popup">
           <ul>
-            {list.map((item, i) => (
+            {list.map((obj, i) => (
               <li
                 key={i}
                 onClick={() => onClickListItem(i)}
                 className={value === i ? 'active' : null}
               >
-                {item}
+                {obj.name}
               </li>
             ))}
           </ul>
