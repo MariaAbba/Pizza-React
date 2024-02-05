@@ -9,23 +9,25 @@ import Sort from './../Components/Sort'
 const Home = () => {
   const [items, setItems] = React.useState([])
   const [isLoading, setIsLoading] = useState(true)
+  const [categoryId, setCategoryId] = React.useState(0)
 
   useEffect(() => {
+    setIsLoading(true)
     axios
-      .get('https://65bcb01fb51f9b29e9320d4c.mockapi.io/items')
+      .get('https://65bcb01fb51f9b29e9320d4c.mockapi.io/items?category=' + categoryId)
       .then((res) => {
         setItems(res.data)
         setIsLoading(false)
       })
     window.scrollTo(0, 0)
-  }, [])
+  }, [categoryId])
 
   return (
     <>
       <div className="container"></div>
       <div className="content__top">
-        <Categories />
-        <Sort />
+        <Categories value={categoryId} clickOnCategory={(id) => setCategoryId(id)}/>
+        <Sort value={categoryId} clickOnCategory={(id) => setCategoryId(id)}/>
       </div>
       <h2 className="content__title">All Pizzas</h2>
       <div className="content__items">
