@@ -9,7 +9,8 @@ import Sort from './../Components/Sort'
 const Home = () => {
   const [items, setItems] = React.useState([])
   const [isLoading, setIsLoading] = useState(true)
-  const [categoryId, setCategoryId] = React.useState(0)
+  const [categoryId, setCategoryId] = React.useState(0)  
+  const [sortType, setSortType] = useState(0)
 
   useEffect(() => {
     setIsLoading(true)
@@ -27,7 +28,7 @@ const Home = () => {
       <div className="container"></div>
       <div className="content__top">
         <Categories value={categoryId} clickOnCategory={(id) => setCategoryId(id)}/>
-        <Sort value={categoryId} clickOnCategory={(id) => setCategoryId(id)}/>
+        <Sort value={sortType} clickOnSort={(id) => setSortType(id)}/>
       </div>
       <h2 className="content__title">All Pizzas</h2>
       <div className="content__items">

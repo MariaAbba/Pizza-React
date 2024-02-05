@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 
-const Sort = () => {
+const Sort = ({ value, clickOnSort }) => {
   const [open, setOpen] = React.useState(false)
-  const [selected, setSelected] = useState(0)
+  // const [selected, setSelected] = useState(0)
   const list = ['Best Sellers', 'Price: Lowest First', 'Price: Highest First']
-  const sortName = list[selected]
+  const sortName = list[value]
 
   const onClickListItem = (index) => {
-    setSelected(index)
+    clickOnSort(index)
     setOpen(false)
   }
   return (
@@ -35,7 +35,7 @@ const Sort = () => {
               <li
                 key={i}
                 onClick={() => onClickListItem(i)}
-                className={selected === i ? 'active' : null}
+                className={value === i ? 'active' : null}
               >
                 {item}
               </li>
