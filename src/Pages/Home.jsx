@@ -24,13 +24,13 @@ const Home = () => {
     // const order = sortType.sortProperty.includes('-') ? 'asc' : 'desc'
     // console.log('Raw Category ID:', categoryId)
     axios
-      .get(`https://65bcb01fb51f9b29e9320d4c.mockapi.io/items`)
+      .get(`https://65bcb01fb51f9b29e9320d4c.mockapi.io/items?category=` + categoryId)
       .then((res) => {
         setItems(res.data)
         setIsLoading(false)
       })
     window.scrollTo(0, 0)
-  }, [])
+  }, [categoryId, sortType])
 
   // useEffect(() => {
   //   setIsLoading(true)
@@ -93,9 +93,9 @@ const Home = () => {
       <div className="container"></div>
       <div className="content__top">
         <Categories
-        value={categoryId} onClickCategory={(i)=> setCategoryId(i)}
+        value={categoryId} onChangeCategory={(i)=> setCategoryId(i)}
         />
-        <Sort />
+        <Sort value={sortType} onChangeSort={(i)=> setSortType(i)}/>
       </div>
       <h2 className="content__title">All Pizzas</h2>
       <div className="content__items">
