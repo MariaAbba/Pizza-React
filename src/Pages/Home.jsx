@@ -9,7 +9,7 @@ import Sort from './../Components/Sort'
 const Home = () => {
   const [items, setItems] = React.useState([])
   const [isLoading, setIsLoading] = useState(true)
-  const [categoryId, setCategoryId] = React.useState(5555)
+  const [categoryId, setCategoryId] = React.useState(0)
   const [sortType, setSortType] = useState(
     0
   //   //   {
