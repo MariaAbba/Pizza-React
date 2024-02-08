@@ -1,7 +1,21 @@
 .root {
   border: 1px solid rgba(0, 0, 0.1);
   padding: 12px 20px;
-  width: 300px;
+  max-width: 300px;
   border-radius: 10px;
   font-size: 16px;
+  padding-left: 35px;
+}
+
+.block {
+  display: flex;
+  position: relative;
+}
+.icon {
+  position: absolute;
+  top: 12px;
+  left: 5px;
+  width: 25px;
+  height: 25px;
+  opacity: .5;
 }
