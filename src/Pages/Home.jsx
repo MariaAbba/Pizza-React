@@ -10,21 +10,24 @@ const Home = () => {
   const [items, setItems] = React.useState([])
   const [isLoading, setIsLoading] = useState(true)
   const [categoryId, setCategoryId] = React.useState(0)
-  const [sortType, setSortType] = useState(
-    0
-  //   //   {
-  //   //   name: 'Best Sellers',
-  //   //   sortProperty: 'rating',
-  //   // }
-  )
+  const [sortType, setSortType] = useState({
+    name: 'Best Sellers',
+    sortProperty: 'rating',
+  })
 
   useEffect(() => {
     setIsLoading(true)
 
-    // const order = sortType.sortProperty.includes('-') ? 'asc' : 'desc'
-    // console.log('Raw Category ID:', categoryId)
+    const order = sortType.sortProperty.includes('-') ? 'asc' : 'desc'
+ 
     axios
-      .get(`https://65bcb01fb51f9b29e9320d4c.mockapi.io/items?category=` + categoryId)
+      .get(
+        `https://65bcb01fb51f9b29e9320d4c.mockapi.io/items?$${
+          categoryId > 0 ? `category=${categoryId}` : ''
+        }&sortBy=${sortType.sortProperty.replace('-', '')}&order=${
+         order
+        }`
+      )
       .then((res) => {
         setItems(res.data)
         setIsLoading(false)
@@ -93,9 +96,10 @@ const Home = () => {
       <div className="container"></div>
       <div className="content__top">
         <Categories
-        value={categoryId} onChangeCategory={(i)=> setCategoryId(i)}
+          value={categoryId}
+          onChangeCategory={(i) => setCategoryId(i)}
         />
-        <Sort value={sortType} onChangeSort={(i)=> setSortType(i)}/>
+        <Sort value={sortType} onChangeSort={(i) => setSortType(i)} />
       </div>
       <h2 className="content__title">All Pizzas</h2>
       <div className="content__items">
