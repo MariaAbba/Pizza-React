@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from 'react'
+
 import axios from 'axios'
 
 import Categories from './../Components/Categories'
 import PizzaBlock from './../Components/PizzaBlock'
 import Skeleton from './../Components/PizzaBlock/Skeleton'
 import Sort from './../Components/Sort'
+import Pagination from '../Components/Pagination/index'
 
 const Home = () => {
   const [items, setItems] = React.useState([])
   const [isLoading, setIsLoading] = useState(true)
   const [categoryId, setCategoryId] = React.useState(0)
+  const [currentPage, setCurrentPage] = useState(1)
   const [sortType, setSortType] = useState({
     name: 'Best Sellers',
     sortProperty: 'rating',
@@ -19,21 +22,19 @@ const Home = () => {
     setIsLoading(true)
 
     const order = sortType.sortProperty.includes('-') ? 'asc' : 'desc'
- 
+
     axios
       .get(
-        `https://65bcb01fb51f9b29e9320d4c.mockapi.io/items?$${
+        `https://65bcb01fb51f9b29e9320d4c.mockapi.io/items?page=${currentPage}&limit=4&$${
           categoryId > 0 ? `category=${categoryId}` : ''
-        }&sortBy=${sortType.sortProperty.replace('-', '')}&order=${
-         order
-        }`
+        }&sortBy=${sortType.sortProperty.replace('-', '')}&order=${order}`
       )
       .then((res) => {
         setItems(res.data)
         setIsLoading(false)
       })
     window.scrollTo(0, 0)
-  }, [categoryId, sortType])
+  }, [categoryId, sortType, currentPage])
 
   // useEffect(() => {
   //   setIsLoading(true)
@@ -117,6 +118,7 @@ const Home = () => {
               />
             ))}
       </div>
+      <Pagination onChangePage={(number) => setCurrentPage(number)} />
       <div />
     </>
   )
