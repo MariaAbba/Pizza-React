@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
+
+import { AppContext } from '../App'
 
 import axios from 'axios'
 
@@ -17,80 +19,30 @@ const Home = () => {
     name: 'Best Sellers',
     sortProperty: 'rating',
   })
+  const { searchValue, setSearchValue } = useContext(AppContext)
 
   useEffect(() => {
     setIsLoading(true)
 
     const order = sortType.sortProperty.includes('-') ? 'asc' : 'desc'
+    const search = searchValue ? `&search=${searchValue}` : ''
 
     axios
       .get(
-        `https://65bcb01fb51f9b29e9320d4c.mockapi.io/items?page=${currentPage}&limit=4&$${
+        `https://65bcb01fb51f9b29e9320d4c.mockapi.io/items?&page=${currentPage}&limit=4&${
           categoryId > 0 ? `category=${categoryId}` : ''
-        }&sortBy=${sortType.sortProperty.replace('-', '')}&order=${order}`
+        }&sortBy=${sortType.sortProperty.replace(
+          '-',
+          ''
+        )}&order=${order}${search}`
       )
       .then((res) => {
         setItems(res.data)
         setIsLoading(false)
       })
     window.scrollTo(0, 0)
-  }, [categoryId, sortType, currentPage])
+  }, [categoryId, sortType, currentPage, searchValue])
 
-  // useEffect(() => {
-  //   setIsLoading(true)
-
-  //   const order = sortType.sortProperty.includes('-') ? 'asc' : 'desc'
-  //   console.log('Raw Category ID:', categoryId) // Log raw category ID
-  //   const trimmedCategoryId =
-  //     categoryId > 0 ? `category=${categoryId}`.trim() : ''
-  //   console.log('Trimmed Category ID:', trimmedCategoryId)
-  //   const categoryQueryParam = trimmedCategoryId ? `${trimmedCategoryId}&` : ''
-  //   const apiUrl = `https://65bcb01fb51f9b29e9320d4c.mockapi.io/items?${categoryQueryParam}sortBy=${sortType.sortProperty.replace(
-  //     '-',
-  //     ''
-  //   )}&order=${order}`
-
-  //   console.log('API URL:', apiUrl)
-
-  //   axios
-  //     .get(apiUrl)
-  //     .then((res) => {
-  //       console.log('API Response:', res.data)
-  //       setItems(res.data)
-  //       setIsLoading(false)
-  //     })
-  //     .catch((error) => {
-  //       console.error('API Error:', error)
-  //       setIsLoading(false)
-  //     })
-
-  //   window.scrollTo(0, 0)
-  // }, [categoryId, sortType])
-
-  // useEffect(() => {
-  //   setIsLoading(true)
-
-  //   const order = sortType.sortProperty.includes('-') ? 'asc' : 'desc'
-  //   const trimmedCategoryId = categoryId > 0 ? `category=${categoryId}`.trim() : ''
-  //   const apiUrl = `https://65bcb01fb51f9b29e9320d4c.mockapi.io/items?${trimmedCategoryId}&sortBy=${sortType.sortProperty.replace(
-  //     '-',
-  //     ''
-  //   )}&order=${order}`
-
-  //   axios
-  //     .get(apiUrl)
-  //     .then((res) => {
-  //       console.log('API Response:', res.data)
-  //       setItems(res.data)
-  //       setIsLoading(false)
-  //     })
-  //     .catch((error) => {
-  //       console.error('API Error:', error)
-  //       setIsLoading(false)
-  //     })
-
-  //   window.scrollTo(0, 0)
-  // }, [categoryId, sortType])
 
   return (
     <>
