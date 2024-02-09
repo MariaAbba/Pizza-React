@@ -8,12 +8,14 @@ import NotFound from './Pages/NotFound'
 
 import './scss/app.scss'
 
-const AppContext = React.createContext()
+export const AppContext = React.createContext()
 
 function App() {
+  const [searchValue, setSearchValue] = useState('')
+
   return (
     <div className="wrapper">
-      <AppContext.Provider>
+      <AppContext.Provider value={{searchValue, setSearchValue}}>
         <Header />
         <div className="content">
           <div className="container">
