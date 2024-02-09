@@ -19,7 +19,7 @@ const Home = () => {
     name: 'Best Sellers',
     sortProperty: 'rating',
   })
-  const { searchValue, setSearchValue } = useContext(AppContext)
+  const { searchValue } = useContext(AppContext)
 
   useEffect(() => {
     setIsLoading(true)

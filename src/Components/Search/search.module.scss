@@ -11,13 +11,21 @@
 
   &:focus {
     border: 1px solid rgba(0, 0, 0, 0.2);
-
   }
 }
 .icon {
   position: absolute;
   top: 12px;
   left: 5px;
+  width: 25px;
+  height: 25px;
+  opacity: 0.3;
+}
+
+.remove {
+  position: absolute;
+  top: 12px;
+  right: 5px;
   width: 25px;
   height: 25px;
   opacity: 0.3;

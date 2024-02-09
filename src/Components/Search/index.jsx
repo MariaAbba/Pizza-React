@@ -1,12 +1,13 @@
-import React, {useContext} from 'react'
+import React, { useContext } from 'react'
 
 import styles from './search.module.scss'
-import {AppContext} from '../../App'
+import { AppContext } from '../../App'
 
 import search from '../../assets/magnifying-glass.svg'
+import remove from '../../assets/remove.svg'
 
 const Search = () => {
-  const {searchValue, setSearchValue} = React.useContext(AppContext)
+  const { searchValue, setSearchValue } = React.useContext(AppContext)
   return (
     <div className={styles.root}>
       <img src={search} alt="search" className={styles.icon} />
@@ -16,6 +17,14 @@ const Search = () => {
         placeholder="Search pizza..."
         onChange={(e) => setSearchValue(e.target.value)}
       />
+      {searchValue && (
+        <img
+          src={remove}
+          alt="remove"
+          className={styles.remove}
+          onClick={() => setSearchValue('')}
+        />
+      )}
     </div>
   )
 }
