@@ -1,10 +1,10 @@
-import { useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 
 const PizzaBlock = ({ title, price, image, sizes, types }) => {
-  const [crustSize, setCrustSize] = useState(0)
+  const [crustSize, setCrustSize] = React.useState(0)
   const typeNames = ['Thin-Crust', 'Thick-Crust']
-  const [pizzaSize, setPizzaSize] = useState(0)
+  const [pizzaSize, setPizzaSize] = React.useState(0)
 
   return (
     <div className="pizza-block">

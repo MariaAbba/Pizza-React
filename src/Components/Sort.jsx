@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 const Sort = ({ value, onChangeSort }) => {
   const [open, setOpen] = React.useState(false)

@@ -1,18 +1,19 @@
 import React from 'react'
 
+import data from '../constants/data'
+
 const Categories = ({ value, onChangeCategory }) => {
-  const categories = ['All', 'Meat', 'Chicken', 'Vegetarian', 'Hot']
 
   return (
     <div className="categories">
       <ul>
-        {categories.map((categoryName, i) => (
+        {data.categories.map((category, i) => (
           <li
             key={i}
             onClick={() => onChangeCategory(i)}
             className={value === i ? 'active' : null}
           >
-            {categoryName}
+            {category.name}
           </li>
         ))}
       </ul>
@@ -21,3 +22,4 @@ const Categories = ({ value, onChangeCategory }) => {
 }
 
 export default Categories
+
