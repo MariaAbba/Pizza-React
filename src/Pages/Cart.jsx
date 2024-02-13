@@ -1,8 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import empty_cart from '../assets/trash.svg'
-import grey_arrow_left from '../assets/grey-arrow-left.svg'
+import images from '../constants/images'
+
 
 const Cart = () => {
   return (
@@ -41,8 +41,8 @@ const Cart = () => {
           Корзина
         </h2>
         <div className="cart__clear">
-          <img src={empty_cart} alt="emptyCart" />
-          <span>Очистить корзину</span>
+          <img src={images.emptyCart} alt="emptyCart" />
+          <span>Clean the cart</span>
         </div>
       </div>
       <div className="content__items">
@@ -288,7 +288,7 @@ const Cart = () => {
             to="/"
             className="button button--outline button--add go-back-btn"
           >
-            <img src={grey_arrow_left} alt="arrow-left" />
+            <img src={images.greyArrowLeft} alt="arrow-left" />
             <span>Вернуться назад</span>
           </Link>
           <div className="button pay-btn">
