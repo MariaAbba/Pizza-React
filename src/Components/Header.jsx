@@ -2,7 +2,7 @@
 import { Link } from 'react-router-dom'
 
 import images from './../constants/images'
-import Search from './Search'
+import Search from './Search/Search'
 
 const Header = () => {
   return (

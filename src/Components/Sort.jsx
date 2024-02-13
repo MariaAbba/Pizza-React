@@ -2,12 +2,12 @@ import React from 'react'
 
 const Sort = ({ value, onChangeSort }) => {
   const [open, setOpen] = React.useState(false)
+  
   const list = [
     { name: 'Best Sellers', sortProperty: 'rating' },
     { name: 'Price: Lowest First', sortProperty: '-price' },
     { name: 'Price: Highest First', sortProperty: 'price' },
   ]
-
 
   const onClickListItem = (index) => {
     onChangeSort(index)

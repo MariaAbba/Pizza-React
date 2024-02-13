@@ -5,7 +5,7 @@ import { AppContext } from '../App'
 import axios from 'axios'
 
 import Categories from './../Components/Categories'
-import PizzaBlock from './../Components/PizzaBlock'
+import PizzaBlock from '../Components/PizzaBlock/PizzaBlock'
 import Skeleton from './../Components/PizzaBlock/Skeleton'
 import Sort from './../Components/Sort'
 import Pagination from '../Components/Pagination/index'
