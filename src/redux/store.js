@@ -1,5 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit'
 
-export default configureStore({
+export const store = configureStore({
   reducer: {},
 })
+
+
+console.log(store)
