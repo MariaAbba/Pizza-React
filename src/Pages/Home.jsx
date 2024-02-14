@@ -29,7 +29,7 @@ const Home = () => {
 
     axios
       .get(
-        `https://65bcb01fb51f9b29e9320d4c.mockapi.io/items?&page=${currentPage}&limit=4&${
+        `https://65bcb01fb51f9b29e9320d4c.mockapi.io/items?&page=${currentPage}&limit=6&${
           categoryId > 0 ? `category=${categoryId}` : ''
         }&sortBy=${sortType.sortProperty.replace(
           '-',
