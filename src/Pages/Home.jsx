@@ -1,5 +1,5 @@
 import React from 'react'
-import {useSelector, useDispatch} from 'react-redux'
+import {useSelector, useDispatch} from '@reduxjs/toolkit'
 
 import { AppContext } from '../App'
 
@@ -12,11 +12,11 @@ import Sort from './../Components/Sort'
 import Pagination from '../Components/Pagination/index'
 
 const Home = () => {
+  const categoryId = useSelector(state => state.filter.categoryId)
+  const dispatch = useDispatch()
+  
   const [items, setItems] = React.useState([])
   const [isLoading, setIsLoading] = React.useState(true)
-  const categoryId = useSelector(state => state.filter.categoryId)
-  const dispatch =useDispatch()
-  // const [categoryId, setCategoryId] = React.useState(0)
   const [currentPage, setCurrentPage] = React.useState(1)
   const [sortType, setSortType] = React.useState({
     name: 'Best Sellers',
@@ -24,6 +24,9 @@ const Home = () => {
   })
   const { searchValue } = React.useContext(AppContext)
 
+  const onChangeCategory = (id) => {
+    dispatch(setCategoryId(id))
+  }
   React.useEffect(() => {
     setIsLoading(true)
 
