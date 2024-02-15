@@ -1,10 +1,11 @@
 import React from 'react'
-import {useSelector, useDispatch} from '@reduxjs/toolkit'
+import { useSelector, useDispatch } from 'react-redux'
 
 import { AppContext } from '../App'
 
 import axios from 'axios'
 
+import {setCategoryId} from '../redux/slices/filterSlice'
 import Categories from './../Components/Categories'
 import PizzaBlock from '../Components/PizzaBlock/PizzaBlock'
 import Skeleton from './../Components/PizzaBlock/Skeleton'
@@ -12,8 +13,12 @@ import Sort from './../Components/Sort'
 import Pagination from '../Components/Pagination/index'
 
 const Home = () => {
-  const categoryId = useSelector(state => state.filter.categoryId)
+  const categoryId = useSelector((state) => state.filter.categoryId)
   const dispatch = useDispatch()
+
+  const onChangeCategory = (id) => {
+    dispatch(setCategoryId(id))
+  }
   
   const [items, setItems] = React.useState([])
   const [isLoading, setIsLoading] = React.useState(true)
@@ -24,9 +29,7 @@ const Home = () => {
   })
   const { searchValue } = React.useContext(AppContext)
 
-  const onChangeCategory = (id) => {
-    dispatch(setCategoryId(id))
-  }
+
   React.useEffect(() => {
     setIsLoading(true)
 
@@ -49,15 +52,11 @@ const Home = () => {
     window.scrollTo(0, 0)
   }, [categoryId, sortType, currentPage, searchValue])
 
-
   return (
     <>
       <div className="container"></div>
       <div className="content__top">
-        <Categories
-          value={categoryId}
-          onChangeCategory={(i) => setCategoryId(i)}
-        />
+        <Categories value={categoryId} onChangeCategory={onChangeCategory} />
         <Sort value={sortType} onChangeSort={(i) => setSortType(i)} />
       </div>
       <h2 className="content__title">All Pizzas</h2>
