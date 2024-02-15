@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React from 'react'
+import {useSelector, useDispatch} from 'react-redux'
 
 import { AppContext } from '../App'
 
@@ -12,16 +13,18 @@ import Pagination from '../Components/Pagination/index'
 
 const Home = () => {
   const [items, setItems] = React.useState([])
-  const [isLoading, setIsLoading] = useState(true)
-  const [categoryId, setCategoryId] = React.useState(0)
-  const [currentPage, setCurrentPage] = useState(1)
-  const [sortType, setSortType] = useState({
+  const [isLoading, setIsLoading] = React.useState(true)
+  const categoryId = useSelector(state => state.filter.categoryId)
+  const dispatch =useDispatch()
+  // const [categoryId, setCategoryId] = React.useState(0)
+  const [currentPage, setCurrentPage] = React.useState(1)
+  const [sortType, setSortType] = React.useState({
     name: 'Best Sellers',
     sortProperty: 'rating',
   })
-  const { searchValue } = useContext(AppContext)
+  const { searchValue } = React.useContext(AppContext)
 
-  useEffect(() => {
+  React.useEffect(() => {
     setIsLoading(true)
 
     const order = sortType.sortProperty.includes('-') ? 'asc' : 'desc'
