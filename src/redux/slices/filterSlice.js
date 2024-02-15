@@ -17,3 +17,7 @@ state.categoryId =
     },
   },
 })
+
+export const {setCategoryId} = filter.actions;
+
+
