@@ -16,6 +16,7 @@ const Home = () => {
   const dispatch = useDispatch()
   const categoryId = useSelector((state) => state.filter.categoryId)
   const sortType = useSelector((state) => state.filter.sort.sortProperty)
+  // const searchValue = useSelector((state) => state.filter.search)
 
   const onChangeCategory = (id) => {
     dispatch(setCategoryId(id))

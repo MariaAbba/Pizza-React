@@ -1,12 +1,20 @@
-import React, { useContext } from 'react'
+import React from 'react'
+// import { useSelector, useDispatch } from 'react-redux'
+// import { setSearch} from '../../redux/slices/filterSlice'
 
 import styles from './search.module.scss'
 import { AppContext } from '../../App'
 
-import  images  from '../../constants/images'
+import images from '../../constants/images'
 
 const Search = () => {
   const { searchValue, setSearchValue } = React.useContext(AppContext)
+  // const dispatch = useDispatch()
+  // const search = useSelector((state) => state.filter.search)
+
+  // const SearchValue = (e) => {
+  //  dispatch(e.target.value)
+  // }
   return (
     <div className={styles.root}>
       <img src={images.search} alt="search" className={styles.icon} />
