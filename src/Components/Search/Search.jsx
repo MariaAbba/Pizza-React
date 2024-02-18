@@ -9,10 +9,12 @@ import images from '../../constants/images'
 
 const Search = () => {
   const { searchValue, setSearchValue } = React.useContext(AppContext)
+  const inputRef = React.useRef()
 
   const onClickClear = () => {
     setSearchValue('')
-    document.querySelector('input').focus()
+    inputRef.current.focus()
+
   }
   React.useEffect(() => {}, [])
   // const dispatch = useDispatch()
@@ -25,6 +27,7 @@ const Search = () => {
     <div className={styles.root}>
       <img src={images.search} alt="search" className={styles.icon} />
       <input
+        ref={inputRef}
         className={styles.input}
         value={searchValue}
         placeholder="Search pizza..."
