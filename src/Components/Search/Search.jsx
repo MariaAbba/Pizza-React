@@ -9,6 +9,12 @@ import images from '../../constants/images'
 
 const Search = () => {
   const { searchValue, setSearchValue } = React.useContext(AppContext)
+
+  const onClickClear = () => {
+    setSearchValue('')
+    document.querySelector('input').focus()
+  }
+  React.useEffect(() => {}, [])
   // const dispatch = useDispatch()
   // const search = useSelector((state) => state.filter.search)
 
@@ -29,7 +35,7 @@ const Search = () => {
           src={images.remove}
           alt="remove"
           className={styles.remove}
-          onClick={() => setSearchValue('')}
+          onClick={onClickClear}
         />
       )}
     </div>
