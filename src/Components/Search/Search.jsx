@@ -10,23 +10,25 @@ import images from '../../constants/images'
 
 const Search = () => {
   const [value, setValue] = React.useState('')
-  const { searchValue, setSearchValue } = React.useContext(AppContext)
+  const { setSearchValue } = React.useContext(AppContext)
   const inputRef = React.useRef()
 
   const onClickClear = () => {
     setSearchValue('')
+    setValue('')
     inputRef.current.focus()
   }
 
-  // const onChangeInput = React.useCallback(
-  //   debounce((event) => {
-  //   setSearchValue(event.target.value)
-  //   }, 1000),
-  //   []
-  // )
+  const updateSearchValue = React.useCallback(
+    debounce((str) => {
+      setSearchValue(str)
+    }, 1000),
+    []
+  )
 
   const onChangeInput = (event) => {
     setValue(event.target.value)
+    updateSearchValue(event.target.value)
   }
 
   React.useEffect(() => {}, [])
