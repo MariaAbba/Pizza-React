@@ -9,14 +9,26 @@ import { AppContext } from '../../App'
 import images from '../../constants/images'
 
 const Search = () => {
+  const [value, setValue] = React.useState('')
   const { searchValue, setSearchValue } = React.useContext(AppContext)
   const inputRef = React.useRef()
 
   const onClickClear = () => {
     setSearchValue('')
     inputRef.current.focus()
-
   }
+
+  // const onChangeInput = React.useCallback(
+  //   debounce((event) => {
+  //   setSearchValue(event.target.value)
+  //   }, 1000),
+  //   []
+  // )
+
+  const onChangeInput = (event) => {
+    setValue(event.target.value)
+  }
+
   React.useEffect(() => {}, [])
   // const dispatch = useDispatch()
   // const search = useSelector((state) => state.filter.search)
@@ -30,9 +42,9 @@ const Search = () => {
       <input
         ref={inputRef}
         className={styles.input}
-        value={searchValue}
+        value={value}
         placeholder="Search pizza..."
-        onChange={(e) => setSearchValue(e.target.value)}
+        onChange={onChangeInput}
       />
       {searchValue && (
         <img
