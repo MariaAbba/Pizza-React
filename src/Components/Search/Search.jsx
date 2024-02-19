@@ -22,7 +22,7 @@ const Search = () => {
   const updateSearchValue = React.useCallback(
     debounce((str) => {
       setSearchValue(str)
-    }, 1000),
+    }, 250),
     []
   )
 
@@ -48,7 +48,7 @@ const Search = () => {
         placeholder="Search pizza..."
         onChange={onChangeInput}
       />
-      {searchValue && (
+      {value && (
         <img
           src={images.remove}
           alt="remove"
