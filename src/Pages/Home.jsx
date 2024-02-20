@@ -1,35 +1,44 @@
 import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import axios from 'axios'
+import qs from 'qs'
 
+import { useNavigate } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import {
+  setCategoryId,
+  setCurrentPage,
+  setFilters,
+} from '../redux/slices/filterSlice'
 import { AppContext } from '../App'
 
-import axios from 'axios'
-
-import { setCategoryId, setCurrentPage } from '../redux/slices/filterSlice'
 import Categories from './../Components/Categories'
 import PizzaBlock from '../Components/PizzaBlock/PizzaBlock'
 import Skeleton from './../Components/PizzaBlock/Skeleton'
 import Sort from './../Components/Sort'
+import { list } from '../Components/Sort'
 import Pagination from '../Components/Pagination/index'
 
 const Home = () => {
+  const navigate = useNavigate()
   const dispatch = useDispatch()
-  const {categoryId, currentPage} = useSelector((state) => state.filter)
+  const isSearch = React.useRef(false)
+
+  const { categoryId, currentPage } = useSelector((state) => state.filter)
   const sortType = useSelector((state) => state.filter.sort.sortProperty)
-  // const searchValue = useSelector((state) => state.filter.search)
+
+  const [items, setItems] = React.useState([])
+  const [isLoading, setIsLoading] = React.useState(true)
+  const { searchValue } = React.useContext(AppContext)
 
   const onChangeCategory = (id) => {
     dispatch(setCategoryId(id))
   }
 
-  const onChangePage = (number) => {
-    dispatch(setCurrentPage(number))
+  const onChangePage = (page) => {
+    dispatch(setCurrentPage(page))
   }
-  const [items, setItems] = React.useState([])
-  const [isLoading, setIsLoading] = React.useState(true)
-  const { searchValue } = React.useContext(AppContext)
 
-  React.useEffect(() => {
+  const fetchPizzas = () => {
     setIsLoading(true)
     const order = sortType.includes('-') ? 'asc' : 'desc'
     const search = searchValue ? `&search=${searchValue}` : ''
@@ -44,6 +53,41 @@ const Home = () => {
         setIsLoading(false)
       })
     window.scrollTo(0, 0)
+  }
+
+  React.useEffect(() => {
+    if (window.location.search){
+      const params = qs.parse(window.location.search.substring(1))
+
+      const sort = list.find((obj) => obj.sortProperty === params.sortProperty)
+
+      dispatch(
+        setFilters({
+          ...params,
+          sort,
+        })
+      )
+      isSearch.current = true;
+    }
+  }, [])
+
+  React.useEffect(() => {
+    window.scrollTo(0, 0)
+
+    if (!isSearch.current){
+      fetchPizzas()
+    }
+    isSearch.current = false
+  }, [categoryId, sortType, currentPage])
+
+  React.useEffect(() => {
+    const queryString = qs.stringify({
+      sortProperty: sortType,
+      categoryId,
+      currentPage,
+    })
+
+    navigate(`?${queryString}`)
   }, [categoryId, sortType, currentPage, searchValue])
 
   return (
@@ -69,9 +113,7 @@ const Home = () => {
               />
             ))}
       </div>
-      <Pagination 
-      currentPage={currentPage}
-      onChangePage={onChangePage} />
+      <Pagination currentPage={currentPage} onChangePage={onChangePage} />
       <div />
     </>
   )
