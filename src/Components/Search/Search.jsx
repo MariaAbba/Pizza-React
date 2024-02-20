@@ -1,11 +1,8 @@
 import React from 'react'
 import debounce from 'lodash.debounce'
-// import { useSelector, useDispatch } from 'react-redux'
-// import { setSearch} from '../../redux/slices/filterSlice'
 
-import styles from './search.module.scss'
 import { AppContext } from '../../App'
-
+import styles from './search.module.scss'
 import images from '../../constants/images'
 
 const Search = () => {
@@ -22,7 +19,7 @@ const Search = () => {
   const updateSearchValue = React.useCallback(
     debounce((str) => {
       setSearchValue(str)
-    }, 250),
+    }, 500),
     []
   )
 
@@ -32,12 +29,7 @@ const Search = () => {
   }
 
   React.useEffect(() => {}, [])
-  // const dispatch = useDispatch()
-  // const search = useSelector((state) => state.filter.search)
 
-  // const SearchValue = (e) => {
-  //  dispatch(e.target.value)
-  // }
   return (
     <div className={styles.root}>
       <img src={images.search} alt="search" className={styles.icon} />
