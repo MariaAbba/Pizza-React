@@ -1,8 +1,10 @@
 import React from 'react'
+
+import { useSelector, useDispatch } from 'react-redux'
+import { addItem, removeItem, clearItems } from '../redux/slices/cartSlice'
 import { Link } from 'react-router-dom'
 
 import images from '../constants/images'
-
 
 const Cart = () => {
   return (
@@ -41,7 +43,7 @@ const Cart = () => {
           Корзина
         </h2>
         <div className="cart__clear">
-          <img src={images.emptyCart} alt="emptyCart" />
+          {/* <img src={images.emptyCart} alt="emptyCart" /> */}
           <span>Clean the cart</span>
         </div>
       </div>

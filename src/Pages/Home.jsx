@@ -22,6 +22,7 @@ const Home = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const isSearch = React.useRef(false)
+  const isMounted = React.useRef(false)
 
   const { categoryId, currentPage } = useSelector((state) => state.filter)
   const sortType = useSelector((state) => state.filter.sort.sortProperty)
@@ -52,11 +53,9 @@ const Home = () => {
         setItems(res.data)
         setIsLoading(false)
       })
-    window.scrollTo(0, 0)
   }
-
   React.useEffect(() => {
-    if (window.location.search){
+    if (window.location.search) {
       const params = qs.parse(window.location.search.substring(1))
 
       const sort = list.find((obj) => obj.sortProperty === params.sortProperty)
@@ -67,28 +66,86 @@ const Home = () => {
           sort,
         })
       )
-      isSearch.current = true;
+      isSearch.current = true
     }
   }, [])
 
   React.useEffect(() => {
     window.scrollTo(0, 0)
 
-    if (!isSearch.current){
+    if (!isSearch.current) {
       fetchPizzas()
     }
+
     isSearch.current = false
-  }, [categoryId, sortType, currentPage])
+  }, [categoryId, sortType, currentPage, searchValue])
 
   React.useEffect(() => {
-    const queryString = qs.stringify({
-      sortProperty: sortType,
-      categoryId,
-      currentPage,
-    })
+    if (isMounted.current) {
+      const queryString = qs.stringify({
+        sortProperty: sortType,
+        categoryId,
+        currentPage,
+      })
+      navigate(`?${queryString}`)
+    }
+    isMounted.current = true
+  }, [categoryId, sortType, currentPage])
 
-    navigate(`?${queryString}`)
-  }, [categoryId, sortType, currentPage, searchValue])
+  // const fetchPizzas = () => {
+  //   setIsLoading(true)
+  //   const order = sortType.includes('-') ? 'asc' : 'desc'
+  //   const search = searchValue ? `&search=${searchValue}` : ''
+  //   axios
+  //     .get(
+  //       `https://65bcb01fb51f9b29e9320d4c.mockapi.io/items?&page=${currentPage}&limit=6&${
+  //         categoryId > 0 ? `category=${categoryId}` : ''
+  //       }&sortBy=${sortType.replace('-', '')}&order=${order}${search}`
+  //     )
+  //     .then((res) => {
+  //       setItems(res.data)
+  //       setIsLoading(false)
+  //     })
+  //   window.scrollTo(0, 0)
+  // }
+
+  // React.useEffect(() => {
+  //   if (window.location.search) {
+  //     const params = qs.parse(window.location.search.substring(1))
+
+  //     const sort = list.find((obj) => obj.sortProperty === params.sortProperty)
+
+  //     dispatch(
+  //       setFilters({
+  //         ...params,
+  //         sort,
+  //       })
+  //     )
+  //     isSearch.current = true
+  //   }
+  // }, [])
+
+  // React.useEffect(() => {
+  //   window.scrollTo(0, 0)
+
+  //   if (!isSearch.current) {
+  //     fetchPizzas()
+  //   }
+  //   isSearch.current = false
+  // }, [categoryId, sortType, currentPage])
+
+  // React.useEffect(() => {
+  //   if (isMounted.current) {
+  //     const queryString = qs.stringify({
+  //       sortProperty: sortType,
+  //       categoryId,
+  //       currentPage,
+  //     })
+
+  //     navigate(`?${queryString}`)
+  //   }
+  //   isMounted.current = true
+  // }, [categoryId, sortType, currentPage])
 
   return (
     <>
