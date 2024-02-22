@@ -5,9 +5,11 @@ const CartItem = ({ id, title, type, price, count, image }) => {
   const dispatch = useDispatch()
 
   const onCLickPlus = () => {
-
+dispatch(addItem({
+  id,
+}))
   }
-  
+
   return (
     <div className="cart__item">
       <div className="cart__item-img">
