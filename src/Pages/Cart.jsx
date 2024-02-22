@@ -9,8 +9,15 @@ import CartItem from '../Components/CartItem'
 
 const Cart = () => {
   const dispatch = useDispatch()
-  const items = useSelector((state) => state.cart.items)
+  const { totalPrice, items } = useSelector((state) => state.cart)
 
+  const totalCount = items.reduce((sum, item) => sum + item.count, 0)
+
+  const onclickClear = () => {
+    if (window.confirm('Remove all the items?')) {
+      dispatch(clearItems())
+    }
+  }
   return (
     <div className="cart">
       <div className="cart__top">
@@ -46,27 +53,25 @@ const Cart = () => {
           </svg>
           Корзина
         </h2>
-        <div className="cart__clear">
+        <div onClick={onclickClear} className="cart__clear">
           {/* <img src={images.emptyCart} alt="emptyCart" /> */}
           <span>Clean the cart</span>
         </div>
       </div>
       <div className="content__items">
         {items.map((item) => (
-          <CartItem 
-          key={item.id}
-         {...item}/>
+          <CartItem key={item.id} {...item} />
         ))}
       </div>
       <div className="cart__bottom">
         <div className="cart__bottom-details">
           <span>
             {' '}
-            Всего пицц: <b>3 шт.</b>{' '}
+            Всего пицц: <b>{totalCount}</b>{' '}
           </span>
           <span>
             {' '}
-            Сумма заказа: <b>900 ₽</b>{' '}
+            Сумма заказа: <b>$ {totalPrice}</b>{' '}
           </span>
         </div>
         <div className="cart__bottom-buttons">
