@@ -1,14 +1,17 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
 
-const CartItem = ({id, title, type, price, count, image}) => {
+const CartItem = ({ id, title, type, price, count, image }) => {
+  const dispatch = useDispatch()
+
+  const onCLickPlus = () => {
+
+  }
+  
   return (
     <div className="cart__item">
       <div className="cart__item-img">
-        <img
-          className="pizza-block__image"
-          src={image}
-          alt="Pizza"
-        />
+        <img className="pizza-block__image" src={image} alt="Pizza" />
       </div>
       <div className="cart__item-info">
         <h3>{title}</h3>
@@ -33,7 +36,7 @@ const CartItem = ({id, title, type, price, count, image}) => {
             ></path>
           </svg>
         </button>
-        <b>2</b>
+        <b>{count}</b>
         <div className="button button--outline button--circle cart__item-count-plus">
           <svg
             width="10"
