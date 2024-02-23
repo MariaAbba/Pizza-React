@@ -11,8 +11,6 @@ const PizzaBlock = ({ id, title, price, image, sizes, types, rating }) => {
     state.cart.items.find((obj) => obj.id === id)
   )
 
-  console.log(cartItem)
-
   const [crustSize, setCrustSize] = React.useState(0)
   const [pizzaSize, setPizzaSize] = React.useState(0)
 
