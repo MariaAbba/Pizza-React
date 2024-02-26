@@ -7,7 +7,6 @@ const initialState = {
     name: 'Best Sellers',
     sortProperty: 'rating',
   },
-  // search : ''
 }
 
 const filterSlice = createSlice({
@@ -28,9 +27,6 @@ const filterSlice = createSlice({
       state.categoryId = Number(action.payload.categoryId)
       state.sort = action.payload.sort
     },
-    // setSearch(state, action) {
-    //   state.sort = action.payload
-    // },
   },
 })
 
