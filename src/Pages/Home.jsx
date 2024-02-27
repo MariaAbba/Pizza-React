@@ -39,21 +39,20 @@ const Home = () => {
     dispatch(setCurrentPage(page))
   }
 
-  const fetchPizzas = () => {
+  const fetchPizzas = async () => {
     setIsLoading(true)
     const order = sortType.includes('-') ? 'asc' : 'desc'
     const search = searchValue ? `&search=${searchValue}` : ''
-    axios
-      .get(
-        `https://65bcb01fb51f9b29e9320d4c.mockapi.io/items?&page=${currentPage}&limit=6&${
-          categoryId > 0 ? `category=${categoryId}` : ''
-        }&sortBy=${sortType.replace('-', '')}&order=${order}${search}`
-      )
-      .then((res) => {
-        setItems(res.data)
-        setIsLoading(false)
-      })
+
+    const res = await axios.get(
+      `https://65bcb01fb51f9b29e9320d4c.mockapi.io/items?&page=${currentPage}&limit=6&${
+        categoryId > 0 ? `category=${categoryId}` : ''
+      }&sortBy=${sortType.replace('-', '')}&order=${order}${search}`
+    )
+    setItems(res.data)
+    setIsLoading(false)
   }
+
   React.useEffect(() => {
     if (window.location.search) {
       const params = qs.parse(window.location.search.substring(1))
@@ -123,3 +122,14 @@ const Home = () => {
 }
 
 export default Home
+
+//  await axios
+//   .get(
+//     `https://65bcb01fb51f9b29e9320d4c.mockapi.io/items?&page=${currentPage}&limit=6&${
+//       categoryId > 0 ? `category=${categoryId}` : ''
+//     }&sortBy=${sortType.replace('-', '')}&order=${order}${search}`
+//   )
+//   .then((res) => {
+//     setItems(res.data)
+//     setIsLoading(false)
+//   })
