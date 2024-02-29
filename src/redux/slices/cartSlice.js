@@ -5,6 +5,7 @@ const initialState = {
   items: [],
 }
 
+const findItem = findItemById(state.items, action.payload.id)
 const cartSlice = createSlice({
   name: 'cart',
   initialState,
@@ -29,11 +30,17 @@ const cartSlice = createSlice({
 
       if (findItem.count > 1) {
         findItem.count--
+        state.totalPrice -= findItem.price * findItem.count
       }
     },
+
     removeItem(state, action) {
+      const findItem = state.items.find((obj) => obj.id === action.payload)
+
       state.items = state.items.filter((obj) => obj.id !== action.payload)
+      state.totalPrice -= findItem.price * findItem.count
     },
+
     clearItems(state) {
       state.items = []
       state.totalPrice = 0
