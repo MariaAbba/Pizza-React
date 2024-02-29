@@ -1,4 +1,4 @@
-<h1 align="left">Responsive e-commerce website.</h1>
+<h1 align="center">Responsive e-commerce website.</h1>
 
 ###
 
