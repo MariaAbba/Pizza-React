@@ -27,7 +27,7 @@ const cartSlice = createSlice({
     minusItem(state, action) {
       const findItem = state.items.find((obj) => obj.id === action.payload)
 
-      if (findItem) {
+      if (findItem >= 1) {
         findItem.count--
       }
     },
