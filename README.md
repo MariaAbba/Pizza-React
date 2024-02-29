@@ -1,4 +1,4 @@
-<h1 align="left">Responsive e-commerce website.</h1>
+<img width="633" alt="Screenshot 2024-03-01 004224" src="https://github.com/MariaAbba/Pizza-React/assets/99909488/fcbf95bf-d31a-4651-a12a-728b5e7dee1e"><h1 align="left">Responsive e-commerce website.</h1>
 
 ###
 
@@ -33,7 +33,9 @@
 ###
 
 <div align="center">
-  <img height="300" src="C:\Users\gretc\OneDrive\Рабочий стол\Screenshot 2024-03-01 004224.png"  />
+<img width="633" alt="Screenshot 2024-03-01 004224" src="https://github.com/MariaAbba/Pizza-React/assets/99909488/677b4fe8-6353-4c08-9ba9-ba034b365d50">
 </div>
 
 ###
+
+
