@@ -5,7 +5,6 @@ const initialState = {
   items: [],
 }
 
-const findItem = findItemById(state.items, action.payload.id)
 const cartSlice = createSlice({
   name: 'cart',
   initialState,
