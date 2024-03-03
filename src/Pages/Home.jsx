@@ -51,9 +51,10 @@ const Home = () => {
         }&sortBy=${sortType.replace('-', '')}&order=${order}${search}`
       )
       setItems(res.data)
-      setIsLoading(false)
     } catch (error) {
       alert('Something went wrong')
+    } finally {
+      setIsLoading(false)
     }
     window.scrollTo(0, 0)
   }
