@@ -44,19 +44,13 @@ const Home = () => {
     const order = sortType.includes('-') ? 'asc' : 'desc'
     const search = searchValue ? `&search=${searchValue}` : ''
 
-    try {
-      const res = await axios.get(
-        `https://65bcb01fb51f9b29e9320d4c.mockapi.io/items?&page=${currentPage}&limit=6&${
-          categoryId > 0 ? `category=${categoryId}` : ''
-        }&sortBy=${sortType.replace('-', '')}&order=${order}${search}`
-      )
-      setItems(res.data)
-    } catch (error) {
-      alert('Something went wrong')
-    } finally {
-      setIsLoading(false)
-    }
-    window.scrollTo(0, 0)
+    const res = await axios.get(
+      `https://65bcb01fb51f9b29e9320d4c.mockapi.io/items?&page=${currentPage}&limit=6&${
+        categoryId > 0 ? `category=${categoryId}` : ''
+      }&sortBy=${sortType.replace('-', '')}&order=${order}${search}`
+    )
+    setItems(res.data)
+    setIsLoading(false)
   }
 
   React.useEffect(() => {
@@ -77,6 +71,7 @@ const Home = () => {
 
   React.useEffect(() => {
     window.scrollTo(0, 0)
+
     if (!isSearch.current) {
       fetchPizzas()
     }
