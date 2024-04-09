@@ -1,13 +1,13 @@
 import React from 'react'
 import debounce from 'lodash.debounce'
 
-import { AppContext } from '../../App'
+import { SearchContext } from '../../App'
 import styles from './search.module.scss'
 import images from '../../constants/images'
 
 const Search = () => {
   const [value, setValue] = React.useState('')
-  const { setSearchValue } = React.useContext(AppContext)
+  const { searchValue, setSearchValue } = React.useContext(SearchContext)
   const inputRef = React.useRef()
 
   const onClickClear = () => {
@@ -19,7 +19,7 @@ const Search = () => {
   const updateSearchValue = React.useCallback(
     debounce((str) => {
       setSearchValue(str)
-    }, 500),
+    }, 250),
     []
   )
 
@@ -28,8 +28,6 @@ const Search = () => {
     updateSearchValue(event.target.value)
   }
 
-  React.useEffect(() => {}, [])
-
   return (
     <div className={styles.root}>
       <img src={images.search} alt="search" className={styles.icon} />
@@ -37,10 +35,10 @@ const Search = () => {
         ref={inputRef}
         className={styles.input}
         value={value}
-        placeholder="Search pizza..."
         onChange={onChangeInput}
+        placeholder="Search pizza..."
       />
-      {value && (
+      {searchValue && (
         <img
           src={images.remove}
           alt="remove"

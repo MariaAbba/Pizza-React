@@ -16,4 +16,10 @@ const categories = [
   },
 ]
 
-export default { categories }
+ const list = [
+  { name: 'Best Sellers', sortProperty: 'rating' },
+  { name: 'Price: Lowest First', sortProperty: '-price' },
+  { name: 'Price: Highest First', sortProperty: 'price' },
+]
+
+export default { categories, list }

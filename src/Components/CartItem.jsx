@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux'
 import {
   addItem,
   removeItem,
-  clearItems,
   minusItem,
 } from '../redux/slices/cartSlice'
 
