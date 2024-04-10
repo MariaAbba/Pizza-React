@@ -10,6 +10,7 @@ import Search from './Search/Search'
 import Pagination from './Pagination'
 import CartItem from './CartItem'
 import CartEmpty from './CartEmpty'
+import FullPizza from '../pages/FullPizza'
 
 export {
   Home,
@@ -23,5 +24,6 @@ export {
   Search,
   Pagination,
   CartItem,
-  CartEmpty
+  CartEmpty,
+  FullPizza,
 }

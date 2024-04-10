@@ -1,4 +1,4 @@
-import React, { useState, useRef, useContext } from 'react'
+import React, { useRef, useContext } from 'react'
 
 import qs from 'qs'
 
@@ -122,7 +122,7 @@ const Home = () => {
       </div>
       <h2 className="content__title">All Pizzas</h2>
       {status === 'error' ? (
-        <div className='content__error-info'>
+        <div className="content__error-info">
           <h2>The basket is empty</h2>
         </div>
       ) : (

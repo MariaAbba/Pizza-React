@@ -3,8 +3,18 @@ import { Routes, Route } from 'react-router-dom'
 import { Header, Home, NotFound, Cart } from './components/index'
 
 import './scss/app.scss'
+// export const SearchContext = React.createContext('')  
 
-export const SearchContext = React.createContext('')
+type SearchContextType = {
+  searchValue: string
+  setSearchValue: React.Dispatch<React.SetStateAction<string>>
+}
+
+export const SearchContext = React.createContext<SearchContextType>({
+  searchValue: '',
+  setSearchValue: () => {},
+})
+
 
 function App() {
   const [searchValue, setSearchValue] = useState('')
